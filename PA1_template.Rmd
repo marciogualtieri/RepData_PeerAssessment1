@@ -2,14 +2,14 @@
 title: 'Reproducible Research: Peer Assessment 1'
 author: "Marcio Gualtieri"
 output:
+  md_document:
+    df_print: kable
+    variant: markdown_github
   html_document:
     css: ./styles/style.css
     df_print: kable
     toc: yes
     toc_depth: 4
-  md_document:
-    df_print: kable
-    variant: markdown_github
 ---
 
 ## Installing the Required Packages
