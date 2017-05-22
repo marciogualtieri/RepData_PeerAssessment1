@@ -6,6 +6,7 @@ output:
     css: ./styles/style.css
     toc: yes
     toc_depth: 4
+    keep_md: true
     df_print: "kable"
 ---
 
