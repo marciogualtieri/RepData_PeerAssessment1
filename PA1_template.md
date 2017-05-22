@@ -75,12 +75,12 @@ sample_data_frame(activity, 6)
 
 |       |  steps| date       |  interval|
 |-------|------:|:-----------|---------:|
-| 13698 |    205| 2012-11-17 |      1325|
-| 13225 |      0| 2012-11-15 |      2200|
-| 1319  |      0| 2012-10-05 |      1350|
-| 45    |     NA| 2012-10-01 |       340|
-| 9723  |    392| 2012-11-03 |      1810|
-| 8679  |      0| 2012-10-31 |       310|
+| 8951  |     NA| 2012-11-01 |       150|
+| 11690 |     NA| 2012-11-10 |      1405|
+| 715   |      0| 2012-10-03 |      1130|
+| 2362  |      0| 2012-10-09 |       445|
+| 531   |      0| 2012-10-02 |      2010|
+| 4274  |      0| 2012-10-15 |      2005|
 
 What is mean total number of steps taken per day?
 -------------------------------------------------
@@ -96,12 +96,12 @@ sample_data_frame(total_steps_per_day, 6)
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-11-20 |          4472|
+| 2012-10-06 |         15420|
+| 2012-11-19 |          8841|
 | 2012-11-21 |         12787|
-| 2012-10-16 |         15084|
-| 2012-11-13 |          7336|
-| 2012-10-29 |          5018|
-| 2012-11-29 |          7047|
+| 2012-11-27 |         13646|
+| 2012-11-18 |         15110|
+| 2012-10-31 |         15414|
 
 ### Histogram of the Total Steps per Day
 
@@ -164,12 +164,12 @@ sample_data_frame(average_steps_per_interval, 6)
 
 |  interval|  average\_steps|
 |---------:|---------------:|
-|      2235|       2.2075472|
-|        10|       0.1320755|
-|       935|      45.2264151|
-|       730|      55.6792453|
-|       405|       0.9433962|
 |      1400|      55.7547170|
+|      1445|      26.0754717|
+|      1545|      98.6603774|
+|        55|       0.1320755|
+|      1325|      56.4339623|
+|       140|       0.1698113|
 
 Here's the time series for this data:
 
@@ -289,12 +289,12 @@ sample_data_frame(imputed_total_steps_per_day, 6)
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-11-27 |         13646|
-| 2012-11-28 |         10183|
-| 2012-11-08 |          3219|
-| 2012-10-19 |         11829|
-| 2012-11-06 |          8334|
-| 2012-10-12 |         17382|
+| 2012-10-18 |         10056|
+| 2012-11-24 |         14478|
+| 2012-11-13 |          7336|
+| 2012-10-11 |         10304|
+| 2012-10-25 |          2492|
+| 2012-10-13 |         12426|
 
 We can now compare the histograms for before and after the imputation:
 
@@ -357,12 +357,12 @@ sample_data_frame(imputed_activity, 6)
 
 |       |  steps| date       |  interval| day\_type |
 |-------|------:|:-----------|---------:|:----------|
-| 14637 |      0| 2012-11-20 |      1940| weekday   |
-| 1490  |      0| 2012-10-06 |       405| weekend   |
-| 14997 |      0| 2012-11-22 |       140| weekday   |
-| 2911  |      0| 2012-10-11 |       230| weekday   |
-| 8691  |      0| 2012-10-31 |       410| weekday   |
-| 14539 |      0| 2012-11-20 |      1130| weekday   |
+| 1849  |    281| 2012-10-07 |      1000| weekend   |
+| 2628  |      0| 2012-10-10 |       255| weekday   |
+| 15644 |      0| 2012-11-24 |       735| weekend   |
+| 12295 |      0| 2012-11-12 |      1630| weekday   |
+| 3051  |      0| 2012-10-11 |      1410| weekday   |
+| 2319  |      0| 2012-10-09 |       110| weekday   |
 
 ### Time-series of the Average Steps per Type of Day
 
@@ -372,17 +372,38 @@ As earlier, first we need to compute the average number of steps per interval:
 
 ``` r
 imputed_average_steps_per_interval <- imputed_activity %>% group_by(interval, day_type) %>% summarize(average_steps = mean(steps))
+imputed_average_steps_per_interval <- mutate(imputed_average_steps_per_interval, day_type = as.factor(day_type))
 sample_data_frame(imputed_average_steps_per_interval, 6)
 ```
 
 |  interval| day\_type |  average\_steps|
 |---------:|:----------|---------------:|
-|      1215| weekend   |       135.04782|
-|      2145| weekend   |        12.04782|
-|      1005| weekday   |        19.60657|
-|      1930| weekday   |        30.42879|
-|      1235| weekend   |        37.73532|
-|       645| weekend   |        13.23532|
+|      1345| weekend   |       89.110325|
+|      1950| weekend   |       48.547825|
+|        15| weekday   |        5.162124|
+|      2240| weekday   |        4.984347|
+|      1645| weekend   |       82.297825|
+|      1640| weekday   |       24.895458|
+
+Note that `day_type` is a factor:
+
+``` r
+str(imputed_average_steps_per_interval, max.level = 1)
+```
+
+    ## Classes 'grouped_df', 'tbl_df', 'tbl' and 'data.frame':  576 obs. of  3 variables:
+    ##  $ interval     : int  0 0 5 5 10 10 15 15 20 20 ...
+    ##  $ day_type     : Factor w/ 2 levels "weekday","weekend": 1 2 1 2 1 2 1 2 1 2 ...
+    ##  $ average_steps: num  7.01 4.67 5.38 4.67 5.14 ...
+    ##  - attr(*, "vars")=List of 1
+    ##  - attr(*, "labels")='data.frame':   288 obs. of  1 variable:
+    ##   ..- attr(*, "vars")=List of 1
+    ##   ..- attr(*, "drop")= logi TRUE
+    ##  - attr(*, "indices")=List of 288
+    ##   .. [list output truncated]
+    ##  - attr(*, "drop")= logi TRUE
+    ##  - attr(*, "group_sizes")= int  2 2 2 2 2 2 2 2 2 2 ...
+    ##  - attr(*, "biggest_group_size")= int 2
 
 Here's the time series for this data broken by weekday:
 
@@ -402,6 +423,6 @@ ggplot(imputed_average_steps_per_interval, aes(x = interval, y = average_steps))
     theme(strip.background = element_rect(fill = alpha("burlywood3", 0.3), color = "black", size = 0.5))
 ```
 
-![](PA1_template_files/figure-markdown_github/unnamed-chunk-22-1.png)
+![](PA1_template_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
 The activity patterns indeed look different: On weekdays the activity seems more concentrated at the beginning of the day, while during weekends seems more distributed along the day.

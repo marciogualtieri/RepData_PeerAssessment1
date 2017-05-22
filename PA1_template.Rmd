@@ -10,6 +10,9 @@ output:
     df_print: kable
     toc: yes
     toc_depth: 4
+  pdf_document:
+    toc: yes
+    toc_depth: '4'
 ---
 
 ## Installing the Required Packages
@@ -277,8 +280,16 @@ As earlier, first we need to compute the average number of steps per interval:
 
 ```{r}
 imputed_average_steps_per_interval <- imputed_activity %>% group_by(interval, day_type) %>% summarize(average_steps = mean(steps))
+imputed_average_steps_per_interval <- mutate(imputed_average_steps_per_interval, day_type = as.factor(day_type))
 sample_data_frame(imputed_average_steps_per_interval, 6)
 ```
+
+Note that `day_type` is a factor:
+
+```{r}
+str(imputed_average_steps_per_interval, max.level = 1)
+```
+
 
 Here's the time series for this data broken by weekday:
 
