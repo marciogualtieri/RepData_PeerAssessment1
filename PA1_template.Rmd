@@ -85,7 +85,7 @@ sample_data_frame(activity, 6)
 
 ```{r}
 total_steps_per_day <- na.omit(activity) %>% group_by(date) %>% summarize(total_steps = sum(steps))
-total_steps_per_day
+sample_data_frame(total_steps_per_day, 6)
 ```
 
 ### Histogram of the Total Steps per Day
@@ -135,7 +135,7 @@ First we need to compute the average number of steps per interval:
 
 ```{r}
 average_steps_per_interval <- na.omit(activity) %>% group_by(interval) %>% summarize(average_steps = mean(steps))
-average_steps_per_interval
+sample_data_frame(average_steps_per_interval, 6)
 ```
 
 Here's the time series for this data:
@@ -217,7 +217,7 @@ Let's compute the total steps per day for the imputed data:
 
 ```{r}
 imputed_total_steps_per_day <- imputed_activity %>% group_by(date) %>% summarize(total_steps = sum(steps))
-imputed_total_steps_per_day
+sample_data_frame(imputed_total_steps_per_day, 6)
 ```
 
 We can now compare the histograms for before and after the imputation:
@@ -277,7 +277,7 @@ As earlier, first we need to compute the average number of steps per interval:
 
 ```{r}
 imputed_average_steps_per_interval <- imputed_activity %>% group_by(interval, day_type) %>% summarize(average_steps = mean(steps))
-imputed_average_steps_per_interval
+sample_data_frame(imputed_average_steps_per_interval, 6)
 ```
 
 Here's the time series for this data broken by weekday:
