@@ -4,15 +4,14 @@ author: "Marcio Gualtieri"
 output:
   md_document:
     df_print: kable
+    toc: yes
+    toc_depth: 4
     variant: markdown_github
   html_document:
     css: ./styles/style.css
     df_print: kable
     toc: yes
     toc_depth: 4
-  pdf_document:
-    toc: yes
-    toc_depth: '4'
 ---
 
 ## Installing the Required Packages

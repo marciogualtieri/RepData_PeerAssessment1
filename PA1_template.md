@@ -1,3 +1,25 @@
+-   [Installing the Required Packages](#installing-the-required-packages)
+-   [Importing the Required Packages](#importing-the-required-packages)
+-   [Loading the data](#loading-the-data)
+    -   [Downloading the Data-set Files](#downloading-the-data-set-files)
+    -   [Loading the Data-set](#loading-the-data-set)
+    -   [Sampling the Data-set](#sampling-the-data-set)
+-   [What is mean total number of steps taken per day?](#what-is-mean-total-number-of-steps-taken-per-day)
+    -   [Total Number of Steps per Day](#total-number-of-steps-per-day)
+    -   [Histogram of the Total Steps per Day](#histogram-of-the-total-steps-per-day)
+    -   [Mean and Median of the Total Steps per Day](#mean-and-median-of-the-total-steps-per-day)
+-   [What is the average daily activity pattern?](#what-is-the-average-daily-activity-pattern)
+    -   [Time-series of the Average Steps](#time-series-of-the-average-steps)
+    -   [Interval with Maximum Average Number of Steps](#interval-with-maximum-average-number-of-steps)
+-   [Imputing missing values](#imputing-missing-values)
+    -   [Missing Values Report](#missing-values-report)
+    -   [Imputation Method](#imputation-method)
+    -   [New Imputed Data-set](#new-imputed-data-set)
+    -   [Histogram of the Total Steps per Day After Imputation](#histogram-of-the-total-steps-per-day-after-imputation)
+-   [Are there differences in activity patterns between weekdays and weekends?](#are-there-differences-in-activity-patterns-between-weekdays-and-weekends)
+    -   [Type of Day ("weekday" or "weekend")](#type-of-day-weekday-or-weekend)
+    -   [Time-series of the Average Steps per Type of Day](#time-series-of-the-average-steps-per-type-of-day)
+
 Installing the Required Packages
 --------------------------------
 
@@ -75,12 +97,12 @@ sample_data_frame(activity, 6)
 
 |       |  steps| date       |  interval|
 |-------|------:|:-----------|---------:|
-| 14594 |      0| 2012-11-20 |      1605|
-| 5055  |      0| 2012-10-18 |      1310|
-| 6512  |     16| 2012-10-23 |      1435|
-| 4149  |      0| 2012-10-15 |       940|
-| 14174 |      0| 2012-11-19 |       505|
-| 2865  |      0| 2012-10-10 |      2240|
+| 3435  |      0| 2012-10-12 |      2210|
+| 14205 |    546| 2012-11-19 |       740|
+| 16346 |     38| 2012-11-26 |      1805|
+| 10966 |      0| 2012-11-08 |       145|
+| 4475  |     21| 2012-10-16 |      1250|
+| 2315  |      0| 2012-10-09 |        50|
 
 What is mean total number of steps taken per day?
 -------------------------------------------------
@@ -96,12 +118,12 @@ sample_data_frame(total_steps_per_day, 6)
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-11-22 |         20427|
-| 2012-10-21 |          8821|
-| 2012-11-12 |         10765|
+| 2012-11-07 |         12883|
 | 2012-10-23 |          8918|
-| 2012-11-16 |          5441|
-| 2012-10-27 |         10119|
+| 2012-11-05 |         10439|
+| 2012-10-07 |         11015|
+| 2012-10-09 |         12811|
+| 2012-11-29 |          7047|
 
 ### Histogram of the Total Steps per Day
 
@@ -164,12 +186,12 @@ sample_data_frame(average_steps_per_interval, 6)
 
 |  interval|  average\_steps|
 |---------:|---------------:|
-|       515|       2.2452830|
-|      2350|       0.2264151|
-|       605|      49.2641509|
-|      1020|      38.9245283|
-|       945|      38.7547170|
-|      1740|      75.0943396|
+|      2140|        8.679245|
+|      2125|        8.018868|
+|      1640|       44.660377|
+|       810|      129.433962|
+|      1415|       48.698113|
+|      1950|       45.660377|
 
 Here's the time series for this data:
 
@@ -289,12 +311,12 @@ sample_data_frame(imputed_total_steps_per_day, 6)
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-10-28 |      11458.00|
-| 2012-10-01 |      10766.19|
-| 2012-10-25 |       2492.00|
-| 2012-10-11 |      10304.00|
-| 2012-11-30 |      10766.19|
-| 2012-10-19 |      11829.00|
+| 2012-11-26 |         11162|
+| 2012-11-17 |         14339|
+| 2012-11-12 |         10765|
+| 2012-11-13 |          7336|
+| 2012-10-30 |          9819|
+| 2012-10-19 |         11829|
 
 We can now compare the histograms for before and after the imputation:
 
@@ -357,12 +379,12 @@ sample_data_frame(imputed_activity, 6)
 
 |       |  steps| date       |  interval| day\_type |
 |-------|------:|:-----------|---------:|:----------|
-| 14606 |     49| 2012-11-20 |      1705| weekday   |
-| 7048  |      0| 2012-10-25 |      1115| weekday   |
-| 16089 |      0| 2012-11-25 |      2040| weekend   |
-| 3120  |      0| 2012-10-11 |      1955| weekday   |
-| 16974 |      0| 2012-11-28 |      2225| weekday   |
-| 7818  |      0| 2012-10-28 |       325| weekend   |
+| 16646 |     83| 2012-11-27 |      1905| weekday   |
+| 1848  |    207| 2012-10-07 |       955| weekend   |
+| 13729 |      0| 2012-11-17 |      1600| weekend   |
+| 7412  |      0| 2012-10-26 |      1735| weekday   |
+| 15145 |     21| 2012-11-22 |      1400| weekday   |
+| 12531 |     16| 2012-11-13 |      1210| weekday   |
 
 ### Time-series of the Average Steps per Type of Day
 
@@ -378,12 +400,12 @@ sample_data_frame(imputed_average_steps_per_interval, 6)
 
 |  interval| day\_type |  average\_steps|
 |---------:|:----------|---------------:|
-|      1645| weekend   |       82.297825|
-|       115| weekday   |        5.384347|
-|       855| weekend   |      122.485325|
-|       435| weekday   |        5.117680|
-|       320| weekend   |        5.360325|
-|       520| weekday   |        8.762124|
+|      1610| weekday   |       51.651013|
+|      1000| weekend   |       47.735325|
+|       445| weekend   |        5.235325|
+|      1955| weekend   |       51.547825|
+|       220| weekend   |        4.672825|
+|       725| weekday   |       57.295458|
 
 Note that `day_type` is a factor:
 
