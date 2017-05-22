@@ -40,7 +40,7 @@ suppressMessages(library(mice))    # Data imputation
 suppressMessages(library(ggplot2)) # Plotting
 ```
 
-## Loading and preprocessing the data
+## Loading the data
 
 ### Downloading the Data-set Files
 

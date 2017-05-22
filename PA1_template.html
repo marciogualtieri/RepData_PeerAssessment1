@@ -126,7 +126,7 @@ $(document).ready(function () {
 <ul>
 <li><a href="#installing-the-required-packages">Installing the Required Packages</a></li>
 <li><a href="#importing-the-required-packages">Importing the Required Packages</a></li>
-<li><a href="#loading-and-preprocessing-the-data">Loading and preprocessing the data</a><ul>
+<li><a href="#loading-the-data">Loading the data</a><ul>
 <li><a href="#downloading-the-data-set-files">Downloading the Data-set Files</a></li>
 <li><a href="#loading-the-data-set">Loading the Data-set</a></li>
 <li><a href="#sampling-the-data-set">Sampling the Data-set</a></li>
@@ -171,8 +171,8 @@ suppressMessages(library(scales))  # Color helpers
 suppressMessages(library(mice))    # Data imputation
 suppressMessages(library(ggplot2)) # Plotting</code></pre>
 </div>
-<div id="loading-and-preprocessing-the-data" class="section level2">
-<h2>Loading and preprocessing the data</h2>
+<div id="loading-the-data" class="section level2">
+<h2>Loading the data</h2>
 <div id="downloading-the-data-set-files" class="section level3">
 <h3>Downloading the Data-set Files</h3>
 <pre class="r"><code>download_zipped_data &lt;- function(url, destination) {
@@ -217,40 +217,40 @@ sample_data_frame(activity, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>8059</td>
+<td>4651</td>
 <td align="right">0</td>
+<td align="left">2012-10-17</td>
+<td align="right">330</td>
+</tr>
+<tr class="even">
+<td>14745</td>
+<td align="right">0</td>
+<td align="left">2012-11-21</td>
+<td align="right">440</td>
+</tr>
+<tr class="odd">
+<td>7408</td>
+<td align="right">0</td>
+<td align="left">2012-10-26</td>
+<td align="right">1715</td>
+</tr>
+<tr class="even">
+<td>7876</td>
+<td align="right">533</td>
 <td align="left">2012-10-28</td>
-<td align="right">2330</td>
+<td align="right">815</td>
 </tr>
-<tr class="even">
-<td>8955</td>
+<tr class="odd">
+<td>11312</td>
 <td align="right">NA</td>
-<td align="left">2012-11-01</td>
-<td align="right">210</td>
-</tr>
-<tr class="odd">
-<td>5700</td>
-<td align="right">34</td>
-<td align="left">2012-10-20</td>
-<td align="right">1855</td>
+<td align="left">2012-11-09</td>
+<td align="right">635</td>
 </tr>
 <tr class="even">
-<td>3892</td>
-<td align="right">0</td>
-<td align="left">2012-10-14</td>
-<td align="right">1215</td>
-</tr>
-<tr class="odd">
-<td>13082</td>
-<td align="right">0</td>
-<td align="left">2012-11-15</td>
-<td align="right">1005</td>
-</tr>
-<tr class="even">
-<td>961</td>
-<td align="right">57</td>
-<td align="left">2012-10-04</td>
-<td align="right">800</td>
+<td>5426</td>
+<td align="right">58</td>
+<td align="left">2012-10-19</td>
+<td align="right">2005</td>
 </tr>
 </tbody>
 </table>
@@ -276,28 +276,28 @@ sample_data_frame(total_steps_per_day, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2012-10-31</td>
-<td align="right">15414</td>
+<td align="left">2012-10-10</td>
+<td align="right">9900</td>
 </tr>
 <tr class="even">
-<td align="left">2012-10-15</td>
-<td align="right">10139</td>
+<td align="left">2012-10-26</td>
+<td align="right">6778</td>
 </tr>
 <tr class="odd">
-<td align="left">2012-10-03</td>
-<td align="right">11352</td>
+<td align="left">2012-11-16</td>
+<td align="right">5441</td>
 </tr>
 <tr class="even">
-<td align="left">2012-11-29</td>
-<td align="right">7047</td>
+<td align="left">2012-10-16</td>
+<td align="right">15084</td>
 </tr>
 <tr class="odd">
-<td align="left">2012-10-17</td>
-<td align="right">13452</td>
+<td align="left">2012-11-06</td>
+<td align="right">8334</td>
 </tr>
 <tr class="even">
-<td align="left">2012-11-12</td>
-<td align="right">10765</td>
+<td align="left">2012-10-02</td>
+<td align="right">126</td>
 </tr>
 </tbody>
 </table>
@@ -359,28 +359,28 @@ sample_data_frame(average_steps_per_interval, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">240</td>
-<td align="right">0.00000</td>
+<td align="right">1025</td>
+<td align="right">50.79245</td>
 </tr>
 <tr class="even">
-<td align="right">1820</td>
-<td align="right">59.26415</td>
+<td align="right">755</td>
+<td align="right">56.15094</td>
 </tr>
 <tr class="odd">
-<td align="right">840</td>
-<td align="right">195.92453</td>
+<td align="right">925</td>
+<td align="right">95.96226</td>
 </tr>
 <tr class="even">
-<td align="right">1815</td>
-<td align="right">85.32075</td>
+<td align="right">1310</td>
+<td align="right">43.26415</td>
 </tr>
 <tr class="odd">
-<td align="right">910</td>
-<td align="right">109.11321</td>
+<td align="right">620</td>
+<td align="right">49.96226</td>
 </tr>
 <tr class="even">
-<td align="right">920</td>
-<td align="right">103.71698</td>
+<td align="right">1650</td>
+<td align="right">46.20755</td>
 </tr>
 </tbody>
 </table>
@@ -547,28 +547,28 @@ sample_data_frame(imputed_total_steps_per_day, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2012-11-01</td>
+<td align="left">2012-11-11</td>
+<td align="right">12608.00</td>
+</tr>
+<tr class="even">
+<td align="left">2012-10-22</td>
+<td align="right">13460.00</td>
+</tr>
+<tr class="odd">
+<td align="left">2012-11-30</td>
 <td align="right">10766.19</td>
 </tr>
 <tr class="even">
-<td align="left">2012-11-22</td>
-<td align="right">20427.00</td>
+<td align="left">2012-10-03</td>
+<td align="right">11352.00</td>
 </tr>
 <tr class="odd">
-<td align="left">2012-11-23</td>
-<td align="right">21194.00</td>
+<td align="left">2012-11-12</td>
+<td align="right">10765.00</td>
 </tr>
 <tr class="even">
-<td align="left">2012-10-09</td>
-<td align="right">12811.00</td>
-</tr>
-<tr class="odd">
-<td align="left">2012-11-20</td>
-<td align="right">4472.00</td>
-</tr>
-<tr class="even">
-<td align="left">2012-11-24</td>
-<td align="right">14478.00</td>
+<td align="left">2012-10-20</td>
+<td align="right">10395.00</td>
 </tr>
 </tbody>
 </table>
@@ -628,45 +628,45 @@ sample_data_frame(imputed_activity, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>267</td>
-<td align="right">37.3826</td>
-<td align="left">2012-10-01</td>
-<td align="right">2210</td>
+<td>13004</td>
+<td align="right">0.0000</td>
+<td align="left">2012-11-15</td>
+<td align="right">335</td>
 <td align="left">weekday</td>
 </tr>
 <tr class="even">
-<td>12931</td>
+<td>11277</td>
 <td align="right">37.3826</td>
-<td align="left">2012-11-14</td>
-<td align="right">2130</td>
+<td align="left">2012-11-09</td>
+<td align="right">340</td>
 <td align="left">weekday</td>
 </tr>
 <tr class="odd">
-<td>4625</td>
-<td align="right">0.0000</td>
-<td align="left">2012-10-17</td>
-<td align="right">120</td>
-<td align="left">weekday</td>
-</tr>
-<tr class="even">
-<td>16609</td>
-<td align="right">0.0000</td>
-<td align="left">2012-11-27</td>
-<td align="right">1600</td>
-<td align="left">weekday</td>
-</tr>
-<tr class="odd">
-<td>14005</td>
+<td>13837</td>
 <td align="right">0.0000</td>
 <td align="left">2012-11-18</td>
-<td align="right">1500</td>
+<td align="right">100</td>
 <td align="left">weekend</td>
 </tr>
 <tr class="even">
-<td>6541</td>
-<td align="right">11.0000</td>
-<td align="left">2012-10-23</td>
-<td align="right">1700</td>
+<td>11677</td>
+<td align="right">37.3826</td>
+<td align="left">2012-11-10</td>
+<td align="right">1300</td>
+<td align="left">weekend</td>
+</tr>
+<tr class="odd">
+<td>5409</td>
+<td align="right">56.0000</td>
+<td align="left">2012-10-19</td>
+<td align="right">1840</td>
+<td align="left">weekday</td>
+</tr>
+<tr class="even">
+<td>3068</td>
+<td align="right">119.0000</td>
+<td align="left">2012-10-11</td>
+<td align="right">1535</td>
 <td align="left">weekday</td>
 </tr>
 </tbody>
@@ -693,34 +693,34 @@ sample_data_frame(imputed_average_steps_per_interval, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">2300</td>
+<td align="right">1235</td>
 <td align="left">weekday</td>
-<td align="right">8.095458</td>
+<td align="right">31.40657</td>
 </tr>
 <tr class="even">
-<td align="right">1915</td>
-<td align="left">weekend</td>
-<td align="right">48.485325</td>
+<td align="right">1400</td>
+<td align="left">weekday</td>
+<td align="right">44.47324</td>
 </tr>
 <tr class="odd">
-<td align="right">2235</td>
+<td align="right">715</td>
 <td align="left">weekend</td>
-<td align="right">4.672825</td>
+<td align="right">10.67282</td>
 </tr>
 <tr class="even">
-<td align="right">2350</td>
-<td align="left">weekday</td>
-<td align="right">5.251013</td>
+<td align="right">1835</td>
+<td align="left">weekend</td>
+<td align="right">49.23532</td>
 </tr>
 <tr class="odd">
-<td align="right">120</td>
-<td align="left">weekend</td>
-<td align="right">4.672825</td>
+<td align="right">1220</td>
+<td align="left">weekday</td>
+<td align="right">45.25101</td>
 </tr>
 <tr class="even">
-<td align="right">200</td>
-<td align="left">weekend</td>
-<td align="right">4.672825</td>
+<td align="right">325</td>
+<td align="left">weekday</td>
+<td align="right">5.71768</td>
 </tr>
 </tbody>
 </table>
