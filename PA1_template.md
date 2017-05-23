@@ -97,12 +97,12 @@ sample_data_frame(activity, 6)
 
 |       |  steps| date       |  interval|
 |-------|------:|:-----------|---------:|
-| 3435  |      0| 2012-10-12 |      2210|
-| 14205 |    546| 2012-11-19 |       740|
-| 16346 |     38| 2012-11-26 |      1805|
-| 10966 |      0| 2012-11-08 |       145|
-| 4475  |     21| 2012-10-16 |      1250|
-| 2315  |      0| 2012-10-09 |        50|
+| 4639  |      0| 2012-10-17 |       230|
+| 12489 |      0| 2012-11-13 |       840|
+| 1485  |      0| 2012-10-06 |       340|
+| 1956  |     30| 2012-10-07 |      1855|
+| 9976  |     NA| 2012-11-04 |      1515|
+| 16077 |      0| 2012-11-25 |      1940|
 
 What is mean total number of steps taken per day?
 -------------------------------------------------
@@ -118,12 +118,12 @@ sample_data_frame(total_steps_per_day, 6)
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-11-07 |         12883|
-| 2012-10-23 |          8918|
+| 2012-11-25 |         11834|
+| 2012-10-13 |         12426|
+| 2012-11-06 |          8334|
+| 2012-11-03 |         10571|
+| 2012-11-12 |         10765|
 | 2012-11-05 |         10439|
-| 2012-10-07 |         11015|
-| 2012-10-09 |         12811|
-| 2012-11-29 |          7047|
 
 ### Histogram of the Total Steps per Day
 
@@ -186,12 +186,12 @@ sample_data_frame(average_steps_per_interval, 6)
 
 |  interval|  average\_steps|
 |---------:|---------------:|
-|      2140|        8.679245|
-|      2125|        8.018868|
-|      1640|       44.660377|
-|       810|      129.433962|
-|      1415|       48.698113|
-|      1950|       45.660377|
+|      1215|      92.7735849|
+|      1550|     102.1132075|
+|      2350|       0.2264151|
+|       150|       0.2641509|
+|      1530|      48.1320755|
+|      1500|      30.0188679|
 
 Here's the time series for this data:
 
@@ -311,12 +311,12 @@ sample_data_frame(imputed_total_steps_per_day, 6)
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-11-26 |         11162|
-| 2012-11-17 |         14339|
-| 2012-11-12 |         10765|
-| 2012-11-13 |          7336|
-| 2012-10-30 |          9819|
-| 2012-10-19 |         11829|
+| 2012-10-27 |      10119.00|
+| 2012-11-18 |      15110.00|
+| 2012-10-11 |      10304.00|
+| 2012-10-01 |      10766.19|
+| 2012-11-13 |       7336.00|
+| 2012-11-22 |      20427.00|
 
 We can now compare the histograms for before and after the imputation:
 
@@ -324,7 +324,7 @@ We can now compare the histograms for before and after the imputation:
 all_total_steps_per_day <-rbind(mutate(total_steps_per_day, Imputed = "No"), mutate(imputed_total_steps_per_day, Imputed = "Yes"))
 
 ggplot(data = all_total_steps_per_day, aes(x = total_steps, fill = Imputed)) +
-    geom_histogram(alpha = 0.3, binwidth = 5000, boundary = -5000, position = "identity", colour = "burlywood3", size = 1) +
+    geom_histogram(alpha = 0.3, binwidth = 5000, boundary = -5000, position = "dodge", colour = "burlywood3", size = 1) +
     ggtitle("Total Number of Steps Taken Each Day") +
     xlab("Total Steps") +
     ylab("Frequency") +
@@ -379,12 +379,12 @@ sample_data_frame(imputed_activity, 6)
 
 |       |  steps| date       |  interval| day\_type |
 |-------|------:|:-----------|---------:|:----------|
-| 16646 |     83| 2012-11-27 |      1905| weekday   |
-| 1848  |    207| 2012-10-07 |       955| weekend   |
-| 13729 |      0| 2012-11-17 |      1600| weekend   |
-| 7412  |      0| 2012-10-26 |      1735| weekday   |
-| 15145 |     21| 2012-11-22 |      1400| weekday   |
-| 12531 |     16| 2012-11-13 |      1210| weekday   |
+| 15663 |      0| 2012-11-24 |       910| weekend   |
+| 16392 |      0| 2012-11-26 |      2155| weekday   |
+| 940   |     40| 2012-10-04 |       615| weekday   |
+| 10810 |      0| 2012-11-07 |      1245| weekday   |
+| 17073 |      0| 2012-11-29 |       640| weekday   |
+| 12389 |      0| 2012-11-13 |        20| weekday   |
 
 ### Time-series of the Average Steps per Type of Day
 
@@ -400,12 +400,12 @@ sample_data_frame(imputed_average_steps_per_interval, 6)
 
 |  interval| day\_type |  average\_steps|
 |---------:|:----------|---------------:|
-|      1610| weekday   |       51.651013|
-|      1000| weekend   |       47.735325|
-|       445| weekend   |        5.235325|
-|      1955| weekend   |       51.547825|
-|       220| weekend   |        4.672825|
-|       725| weekday   |       57.295458|
+|      1825| weekday   |        69.40657|
+|       905| weekend   |       108.29782|
+|      1225| weekend   |        57.98532|
+|       615| weekday   |        73.67324|
+|      1840| weekend   |        61.42282|
+|      1115| weekday   |        17.85101|
 
 Note that `day_type` is a factor:
 

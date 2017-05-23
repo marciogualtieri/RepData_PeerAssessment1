@@ -228,7 +228,7 @@ We can now compare the histograms for before and after the imputation:
 all_total_steps_per_day <-rbind(mutate(total_steps_per_day, Imputed = "No"), mutate(imputed_total_steps_per_day, Imputed = "Yes"))
 
 ggplot(data = all_total_steps_per_day, aes(x = total_steps, fill = Imputed)) +
-    geom_histogram(alpha = 0.3, binwidth = 5000, boundary = -5000, position = "identity", colour = "burlywood3", size = 1) +
+    geom_histogram(alpha = 0.3, binwidth = 5000, boundary = -5000, position = "dodge", colour = "burlywood3", size = 1) +
     ggtitle("Total Number of Steps Taken Each Day") +
     xlab("Total Steps") +
     ylab("Frequency") +
