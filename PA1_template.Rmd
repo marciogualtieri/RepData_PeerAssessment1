@@ -71,12 +71,7 @@ str(activity)
 ### Sampling the Data-set
 
 ```{r}
-sample_data_frame <- function(data, size) {
-  sample_index <- sample(1:nrow(data), size)
-  return(data[sample_index, ])
-}
-
-sample_data_frame(activity, 6)
+sample_n(activity, 6)
 ```
 
 ## What is mean total number of steps taken per day?
@@ -87,7 +82,7 @@ sample_data_frame(activity, 6)
 
 ```{r}
 total_steps_per_day <- na.omit(activity) %>% group_by(date) %>% summarize(total_steps = sum(steps))
-sample_data_frame(total_steps_per_day, 6)
+sample_n(total_steps_per_day, 6)
 ```
 
 ### Histogram of the Total Steps per Day
@@ -137,7 +132,7 @@ First we need to compute the average number of steps per interval:
 
 ```{r}
 average_steps_per_interval <- na.omit(activity) %>% group_by(interval) %>% summarize(average_steps = mean(steps))
-sample_data_frame(average_steps_per_interval, 6)
+sample_n(average_steps_per_interval, 6)
 ```
 
 Here's the time series for this data:
@@ -219,7 +214,7 @@ Let's compute the total steps per day for the imputed data:
 
 ```{r}
 imputed_total_steps_per_day <- imputed_activity %>% group_by(date) %>% summarize(total_steps = sum(steps))
-sample_data_frame(imputed_total_steps_per_day, 6)
+sample_n(imputed_total_steps_per_day, 6)
 ```
 
 We can now compare the histograms for before and after the imputation:
@@ -264,11 +259,11 @@ The mean remained the same and the median is equal to the mean after the imputat
 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
 ```{r}
-to_weekday <- function(day)
+to_day_type <- function(day)
     ifelse(weekdays(day) %in% c("Saturday", "Sunday"), "weekend", "weekday")
 
-imputed_activity <- mutate(imputed_activity, day_type = to_weekday(as.Date(date)))
-sample_data_frame(imputed_activity, 6)
+imputed_activity <- mutate(imputed_activity, day_type = to_day_type(as.Date(date)))
+sample_n(imputed_activity, 6)
 ```
 
 ### Time-series of the Average Steps per Type of Day
@@ -280,7 +275,7 @@ As earlier, first we need to compute the average number of steps per interval:
 ```{r}
 imputed_average_steps_per_interval <- imputed_activity %>% group_by(interval, day_type) %>% summarize(average_steps = mean(steps))
 imputed_average_steps_per_interval <- mutate(imputed_average_steps_per_interval, day_type = as.factor(day_type))
-sample_data_frame(imputed_average_steps_per_interval, 6)
+sample_n(as.data.frame(imputed_average_steps_per_interval), 6)
 ```
 
 Note that `day_type` is a factor:

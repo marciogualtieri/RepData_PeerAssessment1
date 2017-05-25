@@ -87,22 +87,17 @@ str(activity)
 ### Sampling the Data-set
 
 ``` r
-sample_data_frame <- function(data, size) {
-  sample_index <- sample(1:nrow(data), size)
-  return(data[sample_index, ])
-}
-
-sample_data_frame(activity, 6)
+sample_n(activity, 6)
 ```
 
 |       |  steps| date       |  interval|
 |-------|------:|:-----------|---------:|
-| 4639  |      0| 2012-10-17 |       230|
-| 12489 |      0| 2012-11-13 |       840|
-| 1485  |      0| 2012-10-06 |       340|
-| 1956  |     30| 2012-10-07 |      1855|
-| 9976  |     NA| 2012-11-04 |      1515|
-| 16077 |      0| 2012-11-25 |      1940|
+| 6027  |      0| 2012-10-21 |      2210|
+| 9077  |     NA| 2012-11-01 |      1220|
+| 2646  |      0| 2012-10-10 |       425|
+| 12827 |     NA| 2012-11-14 |      1250|
+| 3616  |      0| 2012-10-13 |      1315|
+| 13017 |      0| 2012-11-15 |       440|
 
 What is mean total number of steps taken per day?
 -------------------------------------------------
@@ -113,17 +108,17 @@ What is mean total number of steps taken per day?
 
 ``` r
 total_steps_per_day <- na.omit(activity) %>% group_by(date) %>% summarize(total_steps = sum(steps))
-sample_data_frame(total_steps_per_day, 6)
+sample_n(total_steps_per_day, 6)
 ```
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-11-25 |         11834|
-| 2012-10-13 |         12426|
-| 2012-11-06 |          8334|
-| 2012-11-03 |         10571|
-| 2012-11-12 |         10765|
-| 2012-11-05 |         10439|
+| 2012-10-27 |         10119|
+| 2012-11-21 |         12787|
+| 2012-10-18 |         10056|
+| 2012-11-22 |         20427|
+| 2012-11-02 |         10600|
+| 2012-11-15 |            41|
 
 ### Histogram of the Total Steps per Day
 
@@ -181,17 +176,17 @@ First we need to compute the average number of steps per interval:
 
 ``` r
 average_steps_per_interval <- na.omit(activity) %>% group_by(interval) %>% summarize(average_steps = mean(steps))
-sample_data_frame(average_steps_per_interval, 6)
+sample_n(average_steps_per_interval, 6)
 ```
 
 |  interval|  average\_steps|
 |---------:|---------------:|
-|      1215|      92.7735849|
-|      1550|     102.1132075|
-|      2350|       0.2264151|
-|       150|       0.2641509|
-|      1530|      48.1320755|
-|      1500|      30.0188679|
+|       525|       2.9622642|
+|      1330|      42.7547170|
+|      2130|      14.6603774|
+|       140|       0.1698113|
+|       730|      55.6792453|
+|       320|       0.2075472|
 
 Here's the time series for this data:
 
@@ -306,17 +301,17 @@ Let's compute the total steps per day for the imputed data:
 
 ``` r
 imputed_total_steps_per_day <- imputed_activity %>% group_by(date) %>% summarize(total_steps = sum(steps))
-sample_data_frame(imputed_total_steps_per_day, 6)
+sample_n(imputed_total_steps_per_day, 6)
 ```
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-10-27 |      10119.00|
-| 2012-11-18 |      15110.00|
-| 2012-10-11 |      10304.00|
-| 2012-10-01 |      10766.19|
-| 2012-11-13 |       7336.00|
-| 2012-11-22 |      20427.00|
+| 2012-10-15 |      10139.00|
+| 2012-11-04 |      10766.19|
+| 2012-10-09 |      12811.00|
+| 2012-11-01 |      10766.19|
+| 2012-10-10 |       9900.00|
+| 2012-10-24 |       8355.00|
 
 We can now compare the histograms for before and after the imputation:
 
@@ -370,21 +365,21 @@ Are there differences in activity patterns between weekdays and weekends?
 1.  Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
 ``` r
-to_weekday <- function(day)
+to_day_type <- function(day)
     ifelse(weekdays(day) %in% c("Saturday", "Sunday"), "weekend", "weekday")
 
-imputed_activity <- mutate(imputed_activity, day_type = to_weekday(as.Date(date)))
-sample_data_frame(imputed_activity, 6)
+imputed_activity <- mutate(imputed_activity, day_type = to_day_type(as.Date(date)))
+sample_n(imputed_activity, 6)
 ```
 
-|       |  steps| date       |  interval| day\_type |
-|-------|------:|:-----------|---------:|:----------|
-| 15663 |      0| 2012-11-24 |       910| weekend   |
-| 16392 |      0| 2012-11-26 |      2155| weekday   |
-| 940   |     40| 2012-10-04 |       615| weekday   |
-| 10810 |      0| 2012-11-07 |      1245| weekday   |
-| 17073 |      0| 2012-11-29 |       640| weekday   |
-| 12389 |      0| 2012-11-13 |        20| weekday   |
+|       |    steps| date       |  interval| day\_type |
+|-------|--------:|:-----------|---------:|:----------|
+| 7180  |   0.0000| 2012-10-25 |      2215| weekday   |
+| 9483  |   0.0000| 2012-11-02 |      2210| weekday   |
+| 199   |  37.3826| 2012-10-01 |      1630| weekday   |
+| 5167  |   0.0000| 2012-10-18 |      2230| weekday   |
+| 13844 |   0.0000| 2012-11-18 |       135| weekend   |
+| 6775  |   0.0000| 2012-10-24 |      1230| weekday   |
 
 ### Time-series of the Average Steps per Type of Day
 
@@ -395,17 +390,17 @@ As earlier, first we need to compute the average number of steps per interval:
 ``` r
 imputed_average_steps_per_interval <- imputed_activity %>% group_by(interval, day_type) %>% summarize(average_steps = mean(steps))
 imputed_average_steps_per_interval <- mutate(imputed_average_steps_per_interval, day_type = as.factor(day_type))
-sample_data_frame(imputed_average_steps_per_interval, 6)
+sample_n(as.data.frame(imputed_average_steps_per_interval), 6)
 ```
 
-|  interval| day\_type |  average\_steps|
-|---------:|:----------|---------------:|
-|      1825| weekday   |        69.40657|
-|       905| weekend   |       108.29782|
-|      1225| weekend   |        57.98532|
-|       615| weekday   |        73.67324|
-|      1840| weekend   |        61.42282|
-|      1115| weekday   |        17.85101|
+|     |  interval| day\_type |  average\_steps|
+|-----|---------:|:----------|---------------:|
+| 109 |       430| weekday   |        7.806569|
+| 201 |       820| weekday   |      182.739902|
+| 202 |       820| weekend   |       71.672825|
+| 429 |      1750| weekday   |       34.851013|
+| 356 |      1445| weekend   |       38.985325|
+| 236 |       945| weekend   |       32.672825|
 
 Note that `day_type` is a factor:
 

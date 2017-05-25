@@ -199,12 +199,7 @@ str(activity)</code></pre>
 </div>
 <div id="sampling-the-data-set" class="section level3">
 <h3>Sampling the Data-set</h3>
-<pre class="r"><code>sample_data_frame &lt;- function(data, size) {
-  sample_index &lt;- sample(1:nrow(data), size)
-  return(data[sample_index, ])
-}
-
-sample_data_frame(activity, 6)</code></pre>
+<pre class="r"><code>sample_n(activity, 6)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -217,40 +212,40 @@ sample_data_frame(activity, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>9792</td>
+<td>7412</td>
 <td align="right">0</td>
-<td align="left">2012-11-03</td>
-<td align="right">2355</td>
+<td align="left">2012-10-26</td>
+<td align="right">1735</td>
 </tr>
 <tr class="even">
-<td>1374</td>
-<td align="right">20</td>
-<td align="left">2012-10-05</td>
-<td align="right">1825</td>
+<td>5720</td>
+<td align="right">529</td>
+<td align="left">2012-10-20</td>
+<td align="right">2035</td>
 </tr>
 <tr class="odd">
-<td>4580</td>
-<td align="right">0</td>
-<td align="left">2012-10-16</td>
-<td align="right">2135</td>
+<td>10839</td>
+<td align="right">65</td>
+<td align="left">2012-11-07</td>
+<td align="right">1510</td>
 </tr>
 <tr class="even">
-<td>1773</td>
-<td align="right">0</td>
-<td align="left">2012-10-07</td>
-<td align="right">340</td>
+<td>2977</td>
+<td align="right">43</td>
+<td align="left">2012-10-11</td>
+<td align="right">800</td>
 </tr>
 <tr class="odd">
-<td>8215</td>
+<td>11917</td>
 <td align="right">0</td>
-<td align="left">2012-10-29</td>
-<td align="right">1230</td>
+<td align="left">2012-11-11</td>
+<td align="right">900</td>
 </tr>
 <tr class="even">
-<td>14099</td>
-<td align="right">0</td>
-<td align="left">2012-11-18</td>
-<td align="right">2250</td>
+<td>14308</td>
+<td align="right">111</td>
+<td align="left">2012-11-19</td>
+<td align="right">1615</td>
 </tr>
 </tbody>
 </table>
@@ -265,7 +260,7 @@ sample_data_frame(activity, 6)</code></pre>
 <li>Calculate the total number of steps taken per day</li>
 </ol>
 <pre class="r"><code>total_steps_per_day &lt;- na.omit(activity) %&gt;% group_by(date) %&gt;% summarize(total_steps = sum(steps))
-sample_data_frame(total_steps_per_day, 6)</code></pre>
+sample_n(total_steps_per_day, 6)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -276,28 +271,28 @@ sample_data_frame(total_steps_per_day, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2012-11-06</td>
-<td align="right">8334</td>
-</tr>
-<tr class="even">
-<td align="left">2012-10-07</td>
-<td align="right">11015</td>
-</tr>
-<tr class="odd">
 <td align="left">2012-11-07</td>
 <td align="right">12883</td>
 </tr>
 <tr class="even">
-<td align="left">2012-11-02</td>
-<td align="right">10600</td>
+<td align="left">2012-11-29</td>
+<td align="right">7047</td>
 </tr>
 <tr class="odd">
-<td align="left">2012-10-21</td>
-<td align="right">8821</td>
+<td align="left">2012-11-11</td>
+<td align="right">12608</td>
 </tr>
 <tr class="even">
-<td align="left">2012-10-20</td>
-<td align="right">10395</td>
+<td align="left">2012-11-20</td>
+<td align="right">4472</td>
+</tr>
+<tr class="odd">
+<td align="left">2012-11-26</td>
+<td align="right">11162</td>
+</tr>
+<tr class="even">
+<td align="left">2012-11-13</td>
+<td align="right">7336</td>
 </tr>
 </tbody>
 </table>
@@ -348,7 +343,7 @@ mean_total_steps_per_day</code></pre>
 </ol>
 <p>First we need to compute the average number of steps per interval:</p>
 <pre class="r"><code>average_steps_per_interval &lt;- na.omit(activity) %&gt;% group_by(interval) %&gt;% summarize(average_steps = mean(steps))
-sample_data_frame(average_steps_per_interval, 6)</code></pre>
+sample_n(average_steps_per_interval, 6)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -359,28 +354,28 @@ sample_data_frame(average_steps_per_interval, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">150</td>
-<td align="right">0.2641509</td>
+<td align="right">1420</td>
+<td align="right">35.471698</td>
 </tr>
 <tr class="even">
-<td align="right">430</td>
-<td align="right">4.1132075</td>
+<td align="right">1910</td>
+<td align="right">58.037736</td>
 </tr>
 <tr class="odd">
-<td align="right">2015</td>
-<td align="right">33.3396226</td>
+<td align="right">1130</td>
+<td align="right">33.433962</td>
 </tr>
 <tr class="even">
-<td align="right">2305</td>
-<td align="right">2.8490566</td>
+<td align="right">2005</td>
+<td align="right">19.018868</td>
 </tr>
 <tr class="odd">
-<td align="right">1920</td>
-<td align="right">36.3207547</td>
+<td align="right">1135</td>
+<td align="right">49.981132</td>
 </tr>
 <tr class="even">
-<td align="right">2035</td>
-<td align="right">21.3396226</td>
+<td align="right">505</td>
+<td align="right">1.566038</td>
 </tr>
 </tbody>
 </table>
@@ -536,7 +531,7 @@ na_summary(imputed_activity)</code></pre>
 </ol>
 <p>Let’s compute the total steps per day for the imputed data:</p>
 <pre class="r"><code>imputed_total_steps_per_day &lt;- imputed_activity %&gt;% group_by(date) %&gt;% summarize(total_steps = sum(steps))
-sample_data_frame(imputed_total_steps_per_day, 6)</code></pre>
+sample_n(imputed_total_steps_per_day, 6)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -547,28 +542,28 @@ sample_data_frame(imputed_total_steps_per_day, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2012-11-28</td>
-<td align="right">10183.00</td>
-</tr>
-<tr class="even">
-<td align="left">2012-10-11</td>
-<td align="right">10304.00</td>
-</tr>
-<tr class="odd">
-<td align="left">2012-11-14</td>
+<td align="left">2012-11-30</td>
 <td align="right">10766.19</td>
 </tr>
 <tr class="even">
-<td align="left">2012-10-20</td>
-<td align="right">10395.00</td>
-</tr>
-<tr class="odd">
-<td align="left">2012-11-04</td>
+<td align="left">2012-11-10</td>
 <td align="right">10766.19</td>
 </tr>
+<tr class="odd">
+<td align="left">2012-10-16</td>
+<td align="right">15084.00</td>
+</tr>
 <tr class="even">
-<td align="left">2012-11-21</td>
-<td align="right">12787.00</td>
+<td align="left">2012-11-01</td>
+<td align="right">10766.19</td>
+</tr>
+<tr class="odd">
+<td align="left">2012-10-22</td>
+<td align="right">13460.00</td>
+</tr>
+<tr class="even">
+<td align="left">2012-10-07</td>
+<td align="right">11015.00</td>
 </tr>
 </tbody>
 </table>
@@ -610,11 +605,11 @@ mean_imputed_total_steps_per_day</code></pre>
 <ol style="list-style-type: decimal">
 <li>Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.</li>
 </ol>
-<pre class="r"><code>to_weekday &lt;- function(day)
+<pre class="r"><code>to_day_type &lt;- function(day)
     ifelse(weekdays(day) %in% c(&quot;Saturday&quot;, &quot;Sunday&quot;), &quot;weekend&quot;, &quot;weekday&quot;)
 
-imputed_activity &lt;- mutate(imputed_activity, day_type = to_weekday(as.Date(date)))
-sample_data_frame(imputed_activity, 6)</code></pre>
+imputed_activity &lt;- mutate(imputed_activity, day_type = to_day_type(as.Date(date)))
+sample_n(imputed_activity, 6)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -628,46 +623,46 @@ sample_data_frame(imputed_activity, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>6659</td>
+<td>4860</td>
 <td align="right">0</td>
-<td align="left">2012-10-24</td>
-<td align="right">250</td>
+<td align="left">2012-10-17</td>
+<td align="right">2055</td>
 <td align="left">weekday</td>
 </tr>
 <tr class="even">
-<td>4346</td>
+<td>13898</td>
 <td align="right">0</td>
-<td align="left">2012-10-16</td>
-<td align="right">205</td>
-<td align="left">weekday</td>
-</tr>
-<tr class="odd">
-<td>15690</td>
-<td align="right">0</td>
-<td align="left">2012-11-24</td>
-<td align="right">1125</td>
+<td align="left">2012-11-18</td>
+<td align="right">605</td>
 <td align="left">weekend</td>
 </tr>
-<tr class="even">
-<td>16408</td>
+<tr class="odd">
+<td>5310</td>
 <td align="right">0</td>
-<td align="left">2012-11-26</td>
-<td align="right">2315</td>
+<td align="left">2012-10-19</td>
+<td align="right">1025</td>
 <td align="left">weekday</td>
+</tr>
+<tr class="even">
+<td>9593</td>
+<td align="right">0</td>
+<td align="left">2012-11-03</td>
+<td align="right">720</td>
+<td align="left">weekend</td>
 </tr>
 <tr class="odd">
-<td>387</td>
-<td align="right">0</td>
-<td align="left">2012-10-02</td>
-<td align="right">810</td>
+<td>6189</td>
+<td align="right">783</td>
+<td align="left">2012-10-22</td>
+<td align="right">1140</td>
 <td align="left">weekday</td>
 </tr>
 <tr class="even">
-<td>10805</td>
-<td align="right">242</td>
-<td align="left">2012-11-07</td>
-<td align="right">1220</td>
-<td align="left">weekday</td>
+<td>5841</td>
+<td align="right">24</td>
+<td align="left">2012-10-21</td>
+<td align="right">640</td>
+<td align="left">weekend</td>
 </tr>
 </tbody>
 </table>
@@ -681,11 +676,12 @@ sample_data_frame(imputed_activity, 6)</code></pre>
 <p>As earlier, first we need to compute the average number of steps per interval:</p>
 <pre class="r"><code>imputed_average_steps_per_interval &lt;- imputed_activity %&gt;% group_by(interval, day_type) %&gt;% summarize(average_steps = mean(steps))
 imputed_average_steps_per_interval &lt;- mutate(imputed_average_steps_per_interval, day_type = as.factor(day_type))
-sample_data_frame(imputed_average_steps_per_interval, 6)</code></pre>
+sample_n(as.data.frame(imputed_average_steps_per_interval), 6)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
 <tr class="header">
+<th></th>
 <th align="right">interval</th>
 <th align="left">day_type</th>
 <th align="right">average_steps</th>
@@ -693,34 +689,40 @@ sample_data_frame(imputed_average_steps_per_interval, 6)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">740</td>
+<td>85</td>
+<td align="right">330</td>
 <td align="left">weekday</td>
-<td align="right">60.739902</td>
+<td align="right">6.006569</td>
 </tr>
 <tr class="even">
-<td align="right">620</td>
+<td>292</td>
+<td align="right">1205</td>
 <td align="left">weekend</td>
-<td align="right">9.110325</td>
+<td align="right">123.172825</td>
 </tr>
 <tr class="odd">
-<td align="right">2055</td>
+<td>461</td>
+<td align="right">1910</td>
 <td align="left">weekday</td>
-<td align="right">19.606569</td>
+<td align="right">59.628791</td>
 </tr>
 <tr class="even">
-<td align="right">1005</td>
-<td align="left">weekday</td>
-<td align="right">19.606569</td>
+<td>332</td>
+<td align="right">1345</td>
+<td align="left">weekend</td>
+<td align="right">89.110325</td>
 </tr>
 <tr class="odd">
-<td align="right">305</td>
+<td>494</td>
+<td align="right">2030</td>
+<td align="left">weekend</td>
+<td align="right">77.860325</td>
+</tr>
+<tr class="even">
+<td>27</td>
+<td align="right">105</td>
 <td align="left">weekday</td>
 <td align="right">4.984347</td>
-</tr>
-<tr class="even">
-<td align="right">505</td>
-<td align="left">weekend</td>
-<td align="right">4.672825</td>
 </tr>
 </tbody>
 </table>
