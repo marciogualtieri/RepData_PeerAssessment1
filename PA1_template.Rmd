@@ -91,19 +91,17 @@ sample_n(total_steps_per_day, 6)
 
 
 ```{r}
-total_steps_per_day_hist <- function(data) {
-    par(lwd = 3)
-    hist(data$total_steps,
-         main = "Total Number of Steps Taken Each Day",
-         xlab ="Total Steps",
-         ylim = c(0, 35),
-         font.lab = 2,
-         col = alpha("burlywood1", 0.3),
-         border = "burlywood3")
-    box(lwd = 1, lty = "solid")
-}
+par(lwd = 3)
 
-total_steps_per_day_hist(total_steps_per_day)
+hist(total_steps_per_day$total_steps,
+     main = "Total Number of Steps Taken Each Day",
+     xlab ="Total Steps",
+     ylim = c(0, 35),
+     font.lab = 2,
+     col = alpha("burlywood1", 0.3),
+     border = "burlywood3")
+
+box(lwd = 1, lty = "solid")
 ```
 
 ### Mean and Median of the Total Steps per Day

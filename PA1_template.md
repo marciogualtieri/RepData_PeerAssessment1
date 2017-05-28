@@ -92,12 +92,12 @@ sample_n(activity, 6)
 
 |       |  steps| date       |  interval|
 |-------|------:|:-----------|---------:|
-| 6027  |      0| 2012-10-21 |      2210|
-| 9077  |     NA| 2012-11-01 |      1220|
-| 2646  |      0| 2012-10-10 |       425|
-| 12827 |     NA| 2012-11-14 |      1250|
-| 3616  |      0| 2012-10-13 |      1315|
-| 13017 |      0| 2012-11-15 |       440|
+| 7489  |      0| 2012-10-27 |         0|
+| 7518  |      0| 2012-10-27 |       225|
+| 8377  |      0| 2012-10-30 |       200|
+| 5469  |      0| 2012-10-19 |      2340|
+| 11845 |      0| 2012-11-11 |       300|
+| 3593  |      6| 2012-10-13 |      1120|
 
 What is mean total number of steps taken per day?
 -------------------------------------------------
@@ -113,31 +113,29 @@ sample_n(total_steps_per_day, 6)
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-10-27 |         10119|
-| 2012-11-21 |         12787|
-| 2012-10-18 |         10056|
-| 2012-11-22 |         20427|
-| 2012-11-02 |         10600|
-| 2012-11-15 |            41|
+| 2012-11-05 |         10439|
+| 2012-11-20 |          4472|
+| 2012-11-12 |         10765|
+| 2012-10-30 |          9819|
+| 2012-10-12 |         17382|
+| 2012-10-14 |         15098|
 
 ### Histogram of the Total Steps per Day
 
 1.  If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day.
 
 ``` r
-total_steps_per_day_hist <- function(data) {
-    par(lwd = 3)
-    hist(data$total_steps,
-         main = "Total Number of Steps Taken Each Day",
-         xlab ="Total Steps",
-         ylim = c(0, 35),
-         font.lab = 2,
-         col = alpha("burlywood1", 0.3),
-         border = "burlywood3")
-    box(lwd = 1, lty = "solid")
-}
+par(lwd = 3)
 
-total_steps_per_day_hist(total_steps_per_day)
+hist(total_steps_per_day$total_steps,
+     main = "Total Number of Steps Taken Each Day",
+     xlab ="Total Steps",
+     ylim = c(0, 35),
+     font.lab = 2,
+     col = alpha("burlywood1", 0.3),
+     border = "burlywood3")
+
+box(lwd = 1, lty = "solid")
 ```
 
 ![](PA1_template_files/figure-markdown_github/unnamed-chunk-8-1.png)
@@ -181,12 +179,12 @@ sample_n(average_steps_per_interval, 6)
 
 |  interval|  average\_steps|
 |---------:|---------------:|
-|       525|       2.9622642|
-|      1330|      42.7547170|
-|      2130|      14.6603774|
-|       140|       0.1698113|
-|       730|      55.6792453|
-|       320|       0.2075472|
+|      1750|       34.773585|
+|      1050|       25.094340|
+|      2100|       15.943396|
+|       930|       66.207547|
+|       745|       69.547170|
+|      2250|        1.603774|
 
 Here's the time series for this data:
 
@@ -306,12 +304,12 @@ sample_n(imputed_total_steps_per_day, 6)
 
 | date       |  total\_steps|
 |:-----------|-------------:|
-| 2012-10-15 |      10139.00|
+| 2012-10-17 |      13452.00|
+| 2012-11-07 |      12883.00|
+| 2012-11-27 |      13646.00|
+| 2012-10-02 |        126.00|
 | 2012-11-04 |      10766.19|
-| 2012-10-09 |      12811.00|
-| 2012-11-01 |      10766.19|
-| 2012-10-10 |       9900.00|
-| 2012-10-24 |       8355.00|
+| 2012-11-23 |      21194.00|
 
 We can now compare the histograms for before and after the imputation:
 
@@ -374,12 +372,12 @@ sample_n(imputed_activity, 6)
 
 |       |    steps| date       |  interval| day\_type |
 |-------|--------:|:-----------|---------:|:----------|
-| 7180  |   0.0000| 2012-10-25 |      2215| weekday   |
-| 9483  |   0.0000| 2012-11-02 |      2210| weekday   |
-| 199   |  37.3826| 2012-10-01 |      1630| weekday   |
-| 5167  |   0.0000| 2012-10-18 |      2230| weekday   |
-| 13844 |   0.0000| 2012-11-18 |       135| weekend   |
-| 6775  |   0.0000| 2012-10-24 |      1230| weekday   |
+| 15599 |   0.0000| 2012-11-24 |       350| weekend   |
+| 242   |  37.3826| 2012-10-01 |      2005| weekday   |
+| 11473 |  37.3826| 2012-11-09 |      2000| weekday   |
+| 11867 |   0.0000| 2012-11-11 |       450| weekend   |
+| 15604 |   0.0000| 2012-11-24 |       415| weekend   |
+| 298   |   0.0000| 2012-10-02 |        45| weekday   |
 
 ### Time-series of the Average Steps per Type of Day
 
@@ -395,12 +393,12 @@ sample_n(as.data.frame(imputed_average_steps_per_interval), 6)
 
 |     |  interval| day\_type |  average\_steps|
 |-----|---------:|:----------|---------------:|
-| 109 |       430| weekday   |        7.806569|
-| 201 |       820| weekday   |      182.739902|
-| 202 |       820| weekend   |       71.672825|
-| 429 |      1750| weekday   |       34.851013|
-| 356 |      1445| weekend   |       38.985325|
-| 236 |       945| weekend   |       32.672825|
+| 80  |       315| weekend   |        4.672825|
+| 144 |       555| weekend   |       10.485325|
+| 186 |       740| weekend   |       20.985325|
+| 266 |      1100| weekend   |       59.297825|
+| 239 |       955| weekday   |       19.806569|
+| 258 |      1040| weekend   |       66.485325|
 
 Note that `day_type` is a factor:
 
